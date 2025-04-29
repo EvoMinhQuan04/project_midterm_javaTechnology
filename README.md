@@ -1,23 +1,27 @@
 # README FOR SPRING ECOMMERCE PROJECT - JAVA TECHNOLOGY
 
-Tổng quan
----------
+Giới thiệu tổng quan về dự án
+---------------------------------
 
-**SpringCommerce** là một ứng dụng mua sắm trực tuyến đơn giản được xây dựng bằng **Java Spring Boot**. Mục tiêu của dự án là triển khai một Sản phẩm khả dụng tối thiểu (MVP) thể hiện các chức năng cơ bản của một nền tảng thương mại điện tử, bao gồm hiển thị danh sách sản phẩm, tìm kiếm và lọc, quản lý giỏ hàng, và đặt hàng.
+**SpringCommerce** là một ứng phần mềm trực tuyến đơn giản được xây dựng bằng **Java Spring Boot**. Mục tiêu chính của dự án này là triển khai một Sản phẩm khả dụng tối thiểu (MVP - Minimum Viable Product) thể hiện được các chức năng cơ bản của một nền tảng thương mại điện tử bao gồm hiển thị danh sách sản phẩm, tìm kiếm và lọc danh sách sản phẩm theo các tiêu chí, quản lý giỏ hàng, và đặt hàng và theo dõi trạng thái sản phẩm.
 
-Trong ứng dụng này:
-
-*   Khách hàng có thể tìm kiếm và lọc sản phẩm theo nhiều tiêu chí như danh mục, tên, mô tả của sản phẩm.
-*   Khách hàng có thể xem chi tiết sản phẩm và thêm vào giỏ hàng.
-*   Quy trình thanh toán được triển khai, nhưng việc thanh toán thực hiện bằng tiền mặt khi giao hàng.
+Trong phần mềm này:
+*   Khách hàng có thể xem được danh sách các sản phẩm được hiển thị có trong hệ thống.
+*   Khách hàng có thể tìm kiếm và lọc sản phẩm theo các tiêu chí như danh mục, tên, mô tả của sản phẩm.
+*   Khách hàng có thể xem chi tiết sản phẩm và thêm vào giỏ hàng, tiến hành đặt hàng.
+*   Quy trình thanh toán được cũng được triển khai nhưng việc thanh toán thực hiện bằng tiền mặt khi giao hàng.
 *   Dự án sử dụng **ReactJs** cho frontend, **Spring Boot** cho backend, và **MySQL** để lưu trữ dữ liệu.
     
 
 Các Tính Năng Chính
--------------------
-1.  **Đăng nhập, đăng kí**: Người dùng có thể đăng nhập, đăng kí theo email và mật khẩu.
-2.  **Tìm kiếm & Lọc Sản phẩm**: Người dùng có thể lọc sản phẩm dựa trên danh mục, tên, mô tả.
-3.  **Giỏ Hàng**: Người dùng có thể thêm sản phẩm vào giỏ hàng và xem nội dung giỏ hàng.
-4.  **Quản lý đơn hàng**: Admin có thể cập nhật trạng thái đơn hàng
-5.  **Quản lý sản phẩm**: Admin có thể CRUD sản phẩm
-6.  **Quản lý danh mục**: Admin có thể CRUD danh mục sản phẩm
+------------------------------------
+1.  **Đăng kí, đăng nhập**: Người sử dụng có thể đăng nhập, đăng kí theo email và mật khẩu.
+2.  **Xem danh sách sản phẩm**: Người dùng có thể xem danh sách các sản phẩm.
+3.  **Tìm kiếm & Lọc Sản phẩm**: Người dùng có thể lọc sản phẩm dựa trên danh mục, tên, mô tả, màu sắc.
+4.  **Giỏ Hàng**: Người dùng có thể thêm sản phẩm vào giỏ hàng và xem nội dung giỏ hàng và tiến hành đặt hàng.
+5.  **Theo Dõi Đơn Hàng**: Người dùng sau khi đặt hàng có thể xem trạng thái của đơn hàng đã đặt.
+6.  **Quản Lý Sản Phẩm**: Admin có thể tạo, thêm, xóa, sửa sản phẩm.
+7.  **Quản Lý Danh Mục**: Admin có thể tạo, thêm, xóa, sửa danh mục của sản phẩm.
+8.  **Quản Lý Đơn Hàng**: Admin có thể cập nhật, thay đổi trạng thái của đơn hàng.
+
+
