@@ -75,11 +75,15 @@ Dự án được xây dựng dựa trên các mẫu thiết kế như:
 
 Việc áp dụng các mẫu thiết kế (design patterns) vào dự án Spring Boot mang lại nhiều lợi ích thiết thực, giúp nâng cao chất lượng mã nguồn và khả năng bảo trì hệ thống. Các mẫu thiết kế như Singleton, Factory giúp tổ chức mã nguồn một cách có cấu trúc, giảm sự phức tạp và tăng tính tái sử dụng. Chẳng hạn, trong Spring Boot, mẫu Singleton được tận dụng thông qua các bean được quản lý bởi Spring Container, đảm bảo chỉ có một thể hiện duy nhất của một lớp, tiết kiệm tài nguyên. Mẫu Repository giúp tách biệt logic truy cập dữ liệu khỏi logic nghiệp vụ, giúp mã dễ kiểm thử và mở rộng. Ngoài ra, các mẫu như Dependency Injection (được Spring hỗ trợ mạnh mẽ) thúc đẩy tính linh hoạt, cho phép thay đổi triển khai mà không cần sửa đổi mã nguồn. Nhờ vậy, việc áp dụng mẫu thiết kế không chỉ cải thiện hiệu suất phát triển mà còn đảm bảo dự án dễ dàng thích nghi với các yêu cầu thay đổi trong tương lai.
 
-### **Dependency Injection (DI)**: là một kỹ thuật thiết kế phần mềm trong lập trình hướng đối tượng, nhằm giảm sự gắn kết chặt chẽ giữa các lớp, giúp mã nguồn dễ hiểu, dễ bảo trì và mở rộng. Thay vì tự khởi tạo các đối tượng phụ thuộc, lớp sẽ được cung cấp các đối tượng này từ bên ngoài thông qua cơ chế "tiêm". Lợi ích của DI bao gồm:
+### **Dependency Injection (DI)**
+là một kỹ thuật thiết kế phần mềm trong lập trình hướng đối tượng, nhằm giảm sự gắn kết chặt chẽ giữa các lớp, giúp mã nguồn dễ hiểu, dễ bảo trì và mở rộng. Thay vì tự khởi tạo các đối tượng phụ thuộc, lớp sẽ được cung cấp các đối tượng này từ bên ngoài thông qua cơ chế "tiêm". Lợi ích của DI bao gồm:
 
 * **Tách biệt chức năng**: Các lớp chỉ tập trung vào nhiệm vụ chính, không cần quản lý việc tạo đối tượng phụ thuộc, giúp mã sạch và dễ quản lý.
 Kết nối lỏng lẻo: Các lớp ít phụ thuộc vào cách triển khai cụ thể của đối tượng, hỗ trợ thay đổi hoặc hoán đổi phụ thuộc dễ dàng trong các môi trường như phát triển, kiểm thử hoặc sản xuất.
 * **Tăng tính linh hoạt**: DI cho phép kiểm soát và tùy chỉnh cách các phụ thuộc được tạo, thuận lợi cho việc nâng cấp hoặc tích hợp hệ thống.
+
 Trong dự án này, em đã sử dụng chủ yếu Constructor Injection, một phương pháp phổ biến và được đánh giá cao. Các phụ thuộc được truyền vào lớp thông qua hàm tạo, đảm bảo tính minh bạch và chặt chẽ trong việc thiết lập quan hệ giữa các lớp. Nhờ DI, các phụ thuộc trong dự án trở nên linh hoạt, giúp mã nguồn dễ bảo trì, kiểm thử và mở rộng. Tuy nhiên, DI cũng có nhược điểm, như độ phức tạp trong cấu hình và triển khai, đặc biệt ở các dự án quy mô lớn, có thể gây khó khăn cho việc phát triển nhanh hoặc cho những lập trình viên chưa quen với khái niệm này.
 
 2\. Kiến Trúc Thiết Kế
+-----------------------------
+Có rất nhiều
