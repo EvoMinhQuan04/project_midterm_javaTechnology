@@ -589,10 +589,99 @@ Kết quả:
 
 7\. Kiểm Thử Đơn Vị (Unit Test)
 ------------------------------------------
+Unit Test là phương pháp kiểm thử các thành phần nhỏ nhất của ứng dụng, thường là các hàm hoặc phương thức, nhằm đảm bảo rằng chúng hoạt động đúng như mong đợi. Trong dự án, Unit Test đóng vai trò quan trọng trong việc đảm bảo tính đúng đắn, giúp phát hiện và sửa lỗi ngay từ giai đoạn đầu. Đồng thời, Unit Test còn tăng cường độ tin cậy khi đảm bảo các thành phần hoạt động ổn định trong quá trình tích hợp và hỗ trợ bảo trì, cho phép kiểm tra nhanh các ảnh hưởng khi thay đổi hoặc mở rộng ứng dụng.  
 
+Các bài test tại tầng Service được thực hiện khá đầy đủ với các trường hợp thành công và thất bại, giúp đảm bảo logic xử lý chính xác. Tuy nhiên, khi kiểm tra tầng Controller, tôi gặp khó khăn trong việc test các endpoint bảo mật do ứng dụng sử dụng Spring Security. Điều này đòi hỏi phải cấu hình Security Context và giả lập người dùng đã xác thực, khiến việc kiểm thử các endpoint yêu cầu xác thực trở nên phức tạp hơn. Dưới đây là phân tích chi tiết:
 
+![baocaoTest](https://github.com/user-attachments/assets/4813e6ae-d9b7-4096-8069-041348cb22e7)
 
+# Phân tích kết quả JaCoCo Coverage
 
+## Công cụ & Framework sử dụng  
+- **JUnit 5**: Khung kiểm thử chính để viết và chạy test case.  
+- **Mockito**: Giả lập (mock) các dependency trong tầng Service, giúp cô lập logic cần kiểm thử.  
+- **Spring MockMvc**: Kiểm thử các REST endpoint ở tầng Controller, bao gồm cả các tình huống yêu cầu xác thực (sử dụng `@WithMockUser` hoặc `SecurityMockMvcRequestPostProcessors`).
+
+## Phân tích kết quả từ ảnh báo cáo
+
+1. **Tổng quan**  
+   - Instruction coverage đạt **71%** (355 lệnh chưa chạy trên tổng 1.265).  
+   - Branch coverage chỉ **40%** (44 nhánh chưa chạy trên tổng 74).  
+   Đây là mức trung bình, thấp hơn kỳ vọng (thường ≥ 80% instruction và ≥ 60% branch).
+
+2. **Theo package**  
+   - **`org.example.service.impl`**  
+     Đạt **90%** instruction và **60%** branch. Rõ ràng các bài test Service rất đầy đủ, bao gồm cả kịch bản thành công và thất bại.  
+   - **`org.example.controller`**  
+     Chỉ **23%** instruction và **0%** branch. Phần lớn endpoint chưa được test, đặc biệt các API yêu cầu xác thực (Spring Security).  
+   - **`org.example.service` (interface)**  
+     Instruction coverage rất thấp (**12%**), branch coverage bằng 0. Cần bổ sung test cho phương thức giao diện để đảm bảo toàn diện.  
+   - **`org.example` (root package)**  
+     Coverage tổng hợp ở mức **37%**, branch không áp dụng.
+
+## Kết luận & Định hướng cải thiện  
+- **Ưu điểm**:  
+  - Tầng Service đã được kiểm thử kỹ, logic xử lý chính xác.  
+  - Hạ tầng test (JUnit + Mockito + MockMvc) đã được thiết lập sẵn sàng và hoạt động ổn định.  
+
+- **Hạn chế**:  
+  - Tầng Controller thiếu test, nhất là với các endpoint bảo mật.  
+  - Branch coverage thấp, dễ bỏ sót các nhánh điều kiện quan trọng.
+
+- **Hướng cải thiện**:  
+  Viết thêm test cho Controller — dùng `@WebMvcTest` kết hợp giả lập người dùng (`@WithMockUser`, `SecurityMockMvcRequestPostProcessors`) để bao phủ cả trường hợp thành công và thất bại khi xác thực.  
+  Tăng branch coverage — tạo các kịch bản mock trả về exception hoặc giá trị null để kiểm tra nhánh xử lý lỗi.  
+  Mục tiêu: ít nhất **80%** instruction coverage và **60%** branch coverage trước khi hoàn thiện module.
+
+8\. Cài Đặt và Thiết Lập
+----------------------------------
+
+### **1\. Thiết lập Frontend (React.js)**
+
+#### Bước 1: Cài đặt Node.js và npm
+Bạn cần **Node.js** và **npm** (Node Package Manager) để quản lý các phụ thuộc frontend và chạy máy chủ phát triển.
+*   **Tải Node.js:** [Node.js Downloads](https://nodejs.org/)
+    
+Kiểm tra cài đặt:
+
+```bash
+node -v
+npm -v
+```
+
+#### Bước 2: Clone Dự Án React
+Clone dự án Spring Boot từ GitHub hoặc hệ thống quản lý phiên bản khác.
+```bash
+git clone https://github.com/nguyencongquang-github/spring_ecommerce_midterm_java
+```
+
+#### Bước 3: Cài đặt Các Phụ Thuộc
+Đi đến thư mục frontend và cài đặt tất cả các phụ thuộc cần thiết.
+
+```bash
+cd frontend
+npm install
+``` 
+
+#### Bước 4: Cấu hình API Endpoints
+
+Đảm bảo rằng ứng dụng React được cấu hình để giao tiếp với backend. Thông thường, điều này được thực hiện trong thư mục src/api hoặc src/services, nơi bạn định nghĩa URL backend cho các cuộc gọi API.
+Đảm bảo rằng biến BASE_URL đúng địa chỉ đến server frontend. Bạn có thể kiểm tra trong service/ApiService.js
+```bash
+BASE_URL = "http://localhost:8080";
+```
+
+#### Bước 5: Chạy Máy Chủ Phát Triển React
+
+Khởi động máy chủ phát triển React:
+
+```bash
+npm start
+``` 
+Điều này sẽ khởi động ứng dụng React tại http://localhost:3000 theo mặc định.
+
+#### Bước 6: Kiểm tra Frontend
+Sau khi ứng dụng React đã chạy, mở trình duyệt và truy cập vào **http://localhost:3000** để xem ứng dụng.
 
 
 
