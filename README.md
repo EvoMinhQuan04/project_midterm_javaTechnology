@@ -176,9 +176,44 @@ Toàn bộ dữ liệu của hệ thống được lưu trữ bằng MySQL, mộ
 * **Cấu hình bảo mật linh hoạt**: Toàn bộ luồng bảo mật được định nghĩa trong class SecurityConfig, sử dụng SecurityFilterChain, AuthenticationManager, cùng các custom filter xử lý JWT.
 
 4\. Cấu Trúc Dự Án
+---------------------------------
 
+### **Frontend**
+Dự án frontend của tôi được xây dựng với ReactJS, giúp phát triển giao diện người dùng một cách linh hoạt, dễ bảo trì và mở rộng. Dưới đây là mô tả chi tiết các phần chính trong cấu trúc thư mục của ứng dụng:
 
+### **Component**
+Thư mục component chứa các thành phần giao diện độc lập (UI Components) của ứng dụng. Đây là nơi tôi định nghĩa tất cả các khối giao diện có thể tái sử dụng, được chia thành hai nhóm chính: admin và common.
+**Chức năng**
+* **Tách biệt theo vai trò**: Component được chia rõ theo khu vực admin (admin/) và dùng chung (common/).
+* **Tái sử dụng và mở rộng**: Mỗi file đại diện cho một giao diện cụ thể như form thêm sản phẩm, chỉnh sửa danh mục, hoặc danh sách sản phẩm.
+* **Xây dựng theo hướng module hóa**: Giúp code ngắn gọn, dễ đọc và dễ quản lý khi mở rộng hệ thống.
 
+**Context**
+Thư mục context chứa các React Context dùng để quản lý trạng thái toàn cục. Trong dự án này, tôi sử dụng context để quản lý giỏ hàng (CartContext.js), đảm bảo rằng dữ liệu giỏ hàng có thể truy cập từ bất kỳ component nào trong cây component React.
+**Chức năng**
+* **Chia sẻ trạng thái toàn cục**: Trạng thái giỏ hàng, số lượng sản phẩm, v.v.
+* **Thay thế cho Redux trong các trường hợp đơn giản**: Giảm sự phức tạp nhưng vẫn hiệu quả trong quản lý trạng thái.
+
+**Page**
+Thư mục pages chứa các trang chính (view) trong ứng dụng. Mỗi file trong đây đại diện cho một trang đầy đủ và thường bao gồm nhiều component nhỏ được kết hợp lại.
+**Chức năng**
+* **Tổ chức theo routing**: Mỗi page tương ứng với một route, ví dụ /login, /cart, /profile, v.v.
+* **Tích hợp logic hiển thị**: Có thể bao gồm gọi API, quản lý state cục bộ, và render component con.
+
+### **Service**
+Thư mục service bao gồm các đoạn mã chịu trách nhiệm giao tiếp với backend – thường là các hàm gọi API (RESTful) và logic xử lý liên quan, chúng không trực tiếp render ra giao diện mà chỉ thực hiện các tác vụ về dữ liệu sau đó trả kết quả về cho các component.
+**Chức năng**
+* **Giao tiếp với API backend**: Gửi và nhận dữ liệu từ Spring Boot thông qua axios hoặc fetch.
+* **Tách riêng logic xử lý ra khỏi component**: Giữ cho component đơn giản, chỉ tập trung hiển thị.
+* **Quản lý logic nghiệp vụ:** Chứa các hàm để xử lý các logic như đăng nhập, lấy dữ liệu sản phẩm, thanh toán đơn hàng, v.v.
+
+### **Style**
+Thư mục style lưu trữ các file định nghĩa kiểu dáng (CSS) riêng biệt cho từng component hoặc trang, là nơi "makeup" cho các giao diện hiển thị, màu sắc, bố cục và kiểu dáng.
+**Chức năng**
+* **Tạo giao diện người dùng đẹp và nhất quán**: Quy định màu sắc, bố cục, font chữ, v.v.
+* **Tối ưu trải nghiệm người dùng (UX)**: Giúp trang phản hồi tốt trên nhiều thiết bị (desktop/mobile).
+* **Tách biệt style theo tính năng**: Mỗi file .css tương ứng với một component hoặc trang cụ thể giúp dễ bảo trì.
+* **Tái sử dụng**: các style có thể được tái sử dụng trong các component, giúp duy trì tính nhất quán của giao diện và thiết kế.
 
 
 
