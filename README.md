@@ -285,4 +285,9 @@ Specification được sử dụng để xây dựng các truy vấn động tro
 *   Tăng cường khả năng tái sử dụng mã và mở rộng ứng dụng.  
 
 ### **Resoures**
-mô tả
+Trong dự án Spring Boot, thư mục resources nằm trong src/main/resources là một phần không thể thiếu, đóng vai trò là nơi chứa tài nguyên cấu hình và tệp tĩnh mà ứng dụng cần trong quá trình chạy. Các tệp trong thư mục này sẽ được đóng gói trực tiếp vào file JAR hoặc WAR khi build ứng dụng, và được Spring Boot tự động tải vào classpath.
+
+5\. Entity Diagram
+---------------------------
+
+
