@@ -178,7 +178,7 @@ Toàn bộ dữ liệu của hệ thống được lưu trữ bằng MySQL, mộ
 4\. Cấu Trúc Dự Án
 ---------------------------------
 
-### **Frontend**
+## Frontend
 Dự án frontend của tôi được xây dựng với ReactJS, giúp phát triển giao diện người dùng một cách linh hoạt, dễ bảo trì và mở rộng. Dưới đây là mô tả chi tiết các phần chính trong cấu trúc thư mục của ứng dụng:
 
 ### **Component**
@@ -215,5 +215,74 @@ Thư mục style lưu trữ các file định nghĩa kiểu dáng (CSS) riêng b
 * **Tách biệt style theo tính năng**: Mỗi file .css tương ứng với một component hoặc trang cụ thể giúp dễ bảo trì.
 * **Tái sử dụng**: các style có thể được tái sử dụng trong các component, giúp duy trì tính nhất quán của giao diện và thiết kế.
 
+## Backend
+Mô tả
 
+### **Controller**
+Controller là nơi xử lý các yêu cầu HTTP từ phía client. Trong Spring Boot, các lớp controller sử dụng annotation @RestController hoặc @Controller để đánh dấu và xử lý các endpoint của API. Controller nhận các yêu cầu từ phía người dùng, gọi các dịch vụ liên quan và trả về kết quả (dữ liệu hoặc thông báo).
+**Chức năng:**
+*   Xử lý các yêu cầu GET, POST, PUT, DELETE.
+*   Gửi yêu cầu đến các service tương ứng.
+*   Đảm bảo trả về các dữ liệu dưới định dạng JSON hoặc các phản hồi thích hợp.
 
+### **DTO (Data Transfer Object)**
+DTO là các lớp dùng để truyền tải dữ liệu giữa các lớp hoặc giữa server và client. DTO giúp tối ưu hóa dữ liệu trả về và gửi đi, chỉ truyền các trường cần thiết thay vì toàn bộ entity.
+**Chức năng:**
+*   Giảm thiểu dữ liệu không cần thiết được truyền tải.    
+*   Cung cấp một lớp trung gian giữa các tầng trong ứng dụng.
+
+### **Entity**
+Entity là các lớp mô phỏng các bảng trong cơ sở dữ liệu. Mỗi entity đại diện cho một bảng dữ liệu trong hệ thống, và các trường trong entity tương ứng với các cột trong bảng. Các lớp entity được đánh dấu với annotation @Entity.
+**Chức năng:**
+*   Định nghĩa các đối tượng dữ liệu trong hệ thống.    
+*   Ánh xạ các trường trong entity vào các cột trong cơ sở dữ liệu.   
+*   Xử lý các mối quan hệ giữa các bảng (1-1, 1-n, n-n).   
+
+### **Enums**
+Enums chứa các giá trị cố định trong ứng dụng. Chúng giúp định nghĩa các trạng thái hoặc loại dữ liệu có giới hạn, ví dụ như các trạng thái đơn hàng, mức độ quyền hạn người dùng, hoặc các mã lỗi.
+**Chức năng:**
+*   Cung cấp các giá trị cố định cho các trường hợp đặc biệt.   
+*   Tăng cường tính bảo mật và dễ dàng mở rộng khi có thêm các trạng thái hoặc giá trị mới.
+
+### **Exception**
+Exception bao gồm các lớp xử lý ngoại lệ (errors). Tôi đã tạo các lớp exception tùy chỉnh để xử lý các lỗi người dùng hoặc hệ thống một cách chi tiết và dễ quản lý. Các lớp này thường được đánh dấu với annotation @ResponseStatus để trả về mã trạng thái HTTP thích hợp.
+**Chức năng:**
+*   Xử lý các lỗi xảy ra trong quá trình xử lý yêu cầu.    
+*   Cung cấp thông tin chi tiết về lỗi cho người dùng.   
+*   Đảm bảo ứng dụng không bị dừng đột ngột mà luôn trả về phản hồi hợp lý.   
+
+### **Mapper**
+Mapper là các lớp dùng để chuyển đổi giữa các đối tượng khác nhau, ví dụ như từ DTO sang entity và ngược lại. Tôi đã sử dụng thư viện MapStruct hoặc các phương thức thủ công để thực hiện việc ánh xạ này.
+**Chức năng:**
+*   Chuyển đổi giữa các lớp DTO và entity. 
+*   Giảm bớt sự lặp lại khi làm việc với các đối tượng tương tự.
+
+### **Repository**
+Repository là lớp để tương tác với cơ sở dữ liệu. Trong Spring Boot, tôi sử dụng JpaRepository hoặc CrudRepository từ Spring Data JPA để dễ dàng truy vấn và thao tác với dữ liệu. Repository giúp thực hiện các thao tác như tìm kiếm, lưu trữ và cập nhật dữ liệu.
+**Chức năng:**
+*   Tương tác trực tiếp với cơ sở dữ liệu. 
+*   Cung cấp các phương thức mặc định để truy vấn, lưu và xóa dữ liệu.    
+*   Được Spring Data JPA tự động triển khai.
+
+### **Security**
+Security chịu trách nhiệm bảo mật ứng dụng. Trong phần này, tôi đã sử dụng Spring Security để xử lý các yêu cầu về xác thực (authentication) và phân quyền (authorization). Security đảm bảo rằng chỉ người dùng có quyền mới có thể truy cập vào các tài nguyên của hệ thống.
+**Chức năng:**
+*   Xác thực người dùng (login/logout).   
+*   Phân quyền truy cập vào các endpoint API.   
+*   Bảo vệ các endpoint khỏi các mối đe dọa từ bên ngoài.
+
+### **Service**
+Service chứa logic nghiệp vụ của ứng dụng. Các lớp service thực hiện các phép toán, xử lý các yêu cầu và thực hiện các hành động cần thiết trong hệ thống. Các lớp này thường được đánh dấu với annotation @Service.
+**Chức năng:**
+*   Chứa logic xử lý nghiệp vụ.    
+*   Tương tác với repository để truy vấn hoặc lưu trữ dữ liệu.    
+*   Cung cấp các phương thức để controller gọi và trả về kết quả cho người dùng.
+
+### **Specification**
+Specification được sử dụng để xây dựng các truy vấn động trong Spring Data JPA. Nó cho phép tạo ra các truy vấn linh hoạt và phức tạp hơn mà không cần phải viết trực tiếp các câu lệnh SQL.
+**Chức năng:**
+*   Xây dựng các truy vấn động cho các yêu cầu tìm kiếm phức tạp.    
+*   Tăng cường khả năng tái sử dụng mã và mở rộng ứng dụng.  
+
+### **Resoures**
+mô tả
