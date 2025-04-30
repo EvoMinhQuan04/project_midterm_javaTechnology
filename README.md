@@ -86,4 +86,33 @@ Trong dự án này, em đã sử dụng chủ yếu Constructor Injection, mộ
 
 2\. Kiến Trúc Thiết Kế
 -----------------------------
-Có rất nhiều
+Trong quá trình xây dựng các dự án phần mềm hiện nay, có rất nhiều kỹ thuật và kiến trúc thiết kế nổi bật được áp dụng rộng rãi như Kiến trúc phân tầng (Layered Architecture), giúp chia ứng dụng thành các tầng rõ ràng như Controller, Service, Repository để dễ dàng bảo trì và quản lý. Một kỹ thuật khác cũng rất được ưa chuộng là Kiến trúc Microservices, cho phép chia nhỏ ứng dụng lớn thành các dịch vụ nhỏ độc lập, giúp việc phát triển, triển khai và mở rộng hệ thống linh hoạt hơn rất nhiều.
+
+Bên cạnh đó, Kiến trúc hướng sự kiện (Event-Driven Architecture) là một giải pháp hiệu quả khi xây dựng các hệ thống yêu cầu khả năng xử lý các tác vụ bất đồng bộ và giao tiếp giữa các thành phần qua sự kiện, nhờ đó giảm độ phụ thuộc giữa các module. Kiến trúc Hexagonal (Ports and Adapters) cũng là một lựa chọn mạnh mẽ, giúp cô lập hoàn toàn logic nghiệp vụ của hệ thống khỏi các chi tiết kỹ thuật như giao diện người dùng hoặc database, tạo điều kiện thuận lợi để kiểm thử và thay đổi công nghệ khi cần thiết.
+
+Ngoài ra, Clean Architecture lại hướng đến việc tổ chức ứng dụng sao cho logic nghiệp vụ luôn độc lập với các thành phần kỹ thuật như framework, thư viện bên ngoài, giúp cho việc bảo trì, kiểm thử dễ dàng hơn nhiều.
+
+Mỗi kiến trúc nêu trên đều có những điểm mạnh riêng và phù hợp với từng bối cảnh khác nhau, nhưng trong dự án lần này, tôi đã quyết định chọn kiến trúc RESTful API như kỹ thuật kiến trúc chính để xây dựng các dịch vụ web, bởi tính đơn giản, linh hoạt, khả năng mở rộng cao và sự phổ biến rộng rãi của nó trong ngành phát triển phần mềm hiện nay.
+
+### **Kiến Trúc RESTful API**
+RESTful API (Representational State Transfer) là một kiểu kiến trúc được tôi lựa chọn để phát triển các dịch vụ web trong dự án lần này. Kiến trúc RESTful giúp các ứng dụng giao tiếp với nhau một cách hiệu quả và rõ ràng thông qua giao thức HTTP. Để tương tác với các tài nguyên (resources), kiến trúc này sử dụng các phương thức HTTP chuẩn như GET, POST, PUT và DELETE.
+Các tài nguyên trong RESTful API được định danh bằng những đường dẫn (URL) cụ thể, chẳng hạn như /users để lấy danh sách người dùng hoặc /auth/login để đăng nhập. Việc định nghĩa rõ ràng các tài nguyên cùng với việc sử dụng những phương thức tiêu chuẩn giúp RESTful API trở nên rất dễ hiểu và dễ sử dụng.
+
+### **Cấu Trúc Và Các Nguyên Tắc của RESTful API**
+Trong quá trình xây dựng RESTful API cho dự án này, tôi luôn đảm bảo tuân thủ một số nguyên tắc cơ bản sau đây:
+1. **Tài Nguyên (Resources)**: Trong RESTful API, một tài nguyên có thể là bất kỳ thứ gì mà hệ thống quản lý, ví dụ như người dùng, sản phẩm, đơn hàng. Mỗi tài nguyên luôn được định danh bởi một đường dẫn URL rõ ràng, giúp tôi dễ dàng quản lý và truy cập tài nguyên đó một cách trực tiếp, ví dụ:
+   * */products*: để lấy danh sách các sản phẩm
+   * */orders/{id}*: đẩy lấy thông tin về đơn hàng cụ thể.
+2. **Phương thức HTTP**: RESTful API khai thác sức mạnh của các phương thức HTTP tiêu chuẩn để thực hiện những hành động cụ thể lên tài nguyên, ví dụ:
+   * *GET*: dùng để lấy dữ liệu từ server.
+   * *POST*: tạo mới tài nguyên trên server.
+   * *PUT*: cập nhật tài nguyên đã có sẵn.
+   * *DELETE*: xóa tài nguyên.
+
+Điều này giúp cho việc thao tác với tài nguyên rõ ràng, đơn giản và phù hợp với các tiêu chuẩn chung trên toàn cầu.
+
+3. **Stateless (Phi trạng thái)**: Kiến trúc RESTful API yêu cầu mỗi request từ client luôn phải chứa đầy đủ thông tin để xử lý, server không cần nhớ trạng thái từ những request trước đó. Điều này giúp hệ thống trở nên linh hoạt, dễ mở rộng, giảm tải cho server, và rất thuận lợi khi triển khai hệ thống phân tán hoặc load-balancing.
+4. 
+
+
+
