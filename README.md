@@ -541,6 +541,54 @@ curl --location 'http://localhost:8080/order/filter?status=pending' \
 Kết quả:
 ![getOrderItemByStatus](https://github.com/user-attachments/assets/bf0db55e-a165-44a2-a2d5-84a61ce24ccc)
 
+### Create order
+```bash
+curl --location 'http://localhost:8080/order/create' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM' \
+--data '{
+    "items": [
+        {
+            "productId": 3,
+            "quantity": 5
+        },
+        {
+             "productId": 4,
+            "quantity": 5
+        }
+    ]
+}'
+```
+Kết quả:
+![createOrder](https://github.com/user-attachments/assets/f45a35f5-268b-4537-9351-abecd1e1c58d)
+
+### Update order item status (**Only Admin**)
+```bash
+curl --location --request PUT 'http://localhost:8080/order/update-item-status/18?status=CONFIRMED' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM'
+```
+Kết quả:
+![UpdateOrderItemStatusByAdmin](https://github.com/user-attachments/assets/5b4ab5fd-ccd3-44ee-b9eb-7cd2e98448c1)
+
+## Address
+## Save and update address
+```bash
+curl --location 'http://localhost:8080/address/save' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI0MTVxdWFuY2FvQGdtYWlsLmNvbSIsImlhdCI6MTc0NjAxODk0NSwiZXhwIjoxNzYxNTcwOTQ1fQ.Y3Hjff9yn0Y2GYWHDtCHZLIOj5cJrLoWr8RfSQCTNeWEYbglrZW791FjOFgSmEYc' \
+--header 'Content-Type: application/json' \
+--data '{
+    "street": "Nguyen Huu Tho",
+    "city": "Ho Chi Minh",
+    "state": "Tan Phong",
+    "zipCode": 7000,
+    "country": "VietNam"
+}'
+```
+Kết quả:
+![saveAddress](https://github.com/user-attachments/assets/3a1c647c-94c9-4aaf-b87a-f87938bcdad1)
+
+7\. Kiểm Thử Đơn Vị (Unit Test)
+
 
 
 
