@@ -652,7 +652,7 @@ npm -v
 #### Bước 2: Clone Dự Án React
 Clone dự án Spring Boot từ GitHub hoặc hệ thống quản lý phiên bản khác.
 ```bash
-git clone https://github.com/nguyencongquang-github/spring_ecommerce_midterm_java
+git clone https://github.com/EvoMinhQuan04/project_midterm_javaTechnology.git
 ```
 
 #### Bước 3: Cài đặt Các Phụ Thuộc
@@ -683,8 +683,67 @@ npm start
 #### Bước 6: Kiểm tra Frontend
 Sau khi ứng dụng React đã chạy, mở trình duyệt và truy cập vào **http://localhost:3000** để xem ứng dụng.
 
+### **2\. Thiết lập Backend (Spring Boot)**
 
+#### Bước 1: Cài đặt Java và Maven
+Đảm bảo rằng Java Development Kit (JDK) và Maven đã được cài đặt trên máy tính của bạn.
 
+*   **JDK:** Spring Boot yêu cầu JDK 8 hoặc phiên bản mới hơn. Tải và cài đặt JDK cho hệ điều hành của bạn.
+    *   **Tải JDK:** [AdoptOpenJDK](https://adoptopenjdk.net/)
+*   **Maven:** Spring Boot cũng yêu cầu Maven để xây dựng và quản lý các phụ thuộc.    
+    *   **Tải Maven:** [Apache Maven](https://maven.apache.org/download.cgi)
+        
+#### Bước 2: Clone Dự Án Spring Boot
+Clone dự án Spring Boot từ GitHub hoặc hệ thống quản lý phiên bản khác.
+```bash
+git clone https://github.com/EvoMinhQuan04/project_midterm_javaTechnology.git
+```
+
+#### Bước 3: Thiết lập Cơ sở Dữ liệu (MySQL)
+Đảm bảo bạn đã cài đặt MySQL và thiết lập cơ sở dữ liệu cho ứng dụng Spring Boot.
+1.  **Cài đặt MySQL:** Nếu bạn chưa có MySQL, làm theo hướng dẫn tại [MySQL Downloads](https://dev.mysql.com/downloads/).
+2.  **Tạo Cơ sở Dữ liệu:** Trong MySQL, tạo cơ sở dữ liệu mà ứng dụng Spring Boot sẽ sử dụng.
+
+```bash
+CREATE DATABASE your_db;
+```
+#### Bước 4: Cấu hình Application Properties
+Cấu hình kết nối cơ sở dữ liệu trong tệp application.properties hoặc application.yml nằm trong src/main/resources. Chỉnh sửa lại tên database và username, password của bạn và Xóa **123** ở cuối *aws.s3.accessKey* và *aws.s3.secretKey* để chạy được.
+
+```bash
+spring.datasource.url=jdbc:mysql://localhost:3306/your_db
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+#JWT
+security.jwt.secret-key =09AsC/ucc50zVPxpaxTXGK5NC90jU1XtzJv62R0ROxtMXQ7ANBsv4TMzkUDopYdR
+security.jwt.expiration-time=3600000
+
+# AWS S3 configuration
+aws.s3.accessKey=AKIA2ZIOM6RCSLKMPCSY123
+aws.s3.secretKey=Kr89ZFzg/JaT4j5UopbA3egLE1vjxODVdkxHN7lc123
+
+# Admin account
+admin.email=admin@gmail.com
+admin.password=12341234
+```
+
+#### Bước 5: Xây dựng và Chạy Backend
+1.  Mở terminal trong thư mục gốc của dự án.
+2.  Sử dụng Maven để xây dựng và chạy ứng dụng.
+    
+```bash
+./mvnw clean install
+./mvnw spring-boot:run
+```
+3.  Hoặc bạn có thể chạy ứng dụng từ IDE của mình (IntelliJ IDEA hoặc Eclipse).
+4.  Ứng dụng backend sẽ chạy trên http://localhost:8080 theo mặc định.
+
+9\. Link Video Demo Dự án
+---------------------------------------
+Ấn vào link bên dưới để xem được video demo các chức năng của sản phẩm.
 
 
 
