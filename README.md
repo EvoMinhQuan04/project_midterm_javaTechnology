@@ -401,6 +401,153 @@ curl --location 'http://localhost:8080/user/my-info' \
 Kết quả:
 ![image](https://github.com/user-attachments/assets/4a69a68a-f1b4-4240-874e-d678b22f09e4)
 
+## Product
+### Get all products
+```bash
+curl --location 'http://localhost:8080/product/get-all' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI0MTVxdWFuY2FvQGdtYWlsLmNvbSIsImlhdCI6MTc0NjAxODk0NSwiZXhwIjoxNzYxNTcwOTQ1fQ.Y3Hjff9yn0Y2GYWHDtCHZLIOj5cJrLoWr8RfSQCTNeWEYbglrZW791FjOFgSmEYc'
+```
+Kết quả:
+![getAllProduct](https://github.com/user-attachments/assets/e7910c40-f044-420d-b42c-a3d7fae751ee)
+
+### Get product details
+```bash
+curl --location 'http://localhost:8080/product/get-by-product-id/3' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI0MTVxdWFuY2FvQGdtYWlsLmNvbSIsImlhdCI6MTc0NjAxODk0NSwiZXhwIjoxNzYxNTcwOTQ1fQ.Y3Hjff9yn0Y2GYWHDtCHZLIOj5cJrLoWr8RfSQCTNeWEYbglrZW791FjOFgSmEYc'
+```
+Kết quả:
+![getProductDetals](https://github.com/user-attachments/assets/a9a9025f-0bd1-4798-ba12-6acca0b89f6f)
+
+### Get products by category id
+```bash
+curl --location 'http://localhost:8080/product/get-by-category-id/1' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI0MTVxdWFuY2FvQGdtYWlsLmNvbSIsImlhdCI6MTc0NjAxODk0NSwiZXhwIjoxNzYxNTcwOTQ1fQ.Y3Hjff9yn0Y2GYWHDtCHZLIOj5cJrLoWr8RfSQCTNeWEYbglrZW791FjOFgSmEYc'
+```
+Kết quả:
+![getProductByIDCategory](https://github.com/user-attachments/assets/13ca4d21-c704-47bf-9ee1-e7f687e39191)
+
+### Search product
+```bash
+curl --location 'http://localhost:8080/product/search?searchValue=%C3%A1o%20nam%202'
+```
+Kết quả:
+![searchProduct](https://github.com/user-attachments/assets/b2cb82af-e176-4546-8550-bc297deb58cb)
+
+### Create product (**Only Admin**)
+```bash
+curl --location 'http://localhost:8080/product/create' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM' \
+--form 'categoryId="1"' \
+--form 'image=@"/C:/Users/MSI PC/Desktop/CMQNMT/fashion-shop-management/frontend/src/assets/img/products/n10.jpg"' \
+--form 'name="Ao polo nam"' \
+--form 'description="Ao polo tay ngan nam"' \
+--form 'price="55"'
+```
+Kết quả:
+![createProductByAdmin](https://github.com/user-attachments/assets/739c80e4-cf5a-4408-8cbd-0c1c9549c00d)
+
+### Update product (**Only Admin**)
+```bash
+curl --location --request PUT 'http://localhost:8080/product/update' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM' \
+--data-urlencode 'productId=12' \
+--data-urlencode 'name=Quan polo nam mau trang'
+```
+Kết quả:
+![updateProductByAdmin](https://github.com/user-attachments/assets/6a7ef507-cfc8-4402-add9-ef144ded68df)
+
+### Delete product (**Only Admin**)
+```bash
+curl --location --request DELETE 'http://localhost:8080/product/delete/12' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM'
+```
+Kết quả:
+![deleteProductByAdmin](https://github.com/user-attachments/assets/75b6158f-4cc0-4609-bf61-70cce9491e67)
+
+## Category
+
+### Get category
+```bash
+curl --location 'http://localhost:8080/category/get-category-by-id/2'
+```
+Kết quả:
+![getCategory](https://github.com/user-attachments/assets/91e3e783-0dcb-4e3d-a705-a594ddbb3ae2)
+
+### Get all categories
+```bash
+curl --location 'http://localhost:8080/category/get-all' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM'
+```
+Kết quả:
+![getAllCategory](https://github.com/user-attachments/assets/6d38c1b9-1f09-4fec-a950-3c3ed668b007)
+
+### Create category (**Only Admin**)
+```bash
+curl --location 'http://localhost:8080/category/create' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM' \
+--data '{
+    "name": "Đồ trẻ em"
+}'
+```
+Kết quả:
+![createCategoryByAdmin](https://github.com/user-attachments/assets/5c67f09d-361c-4977-897e-1c529d11bb6a)
+
+### Update category (**Only Admin**)
+```bash
+curl --location --request PUT 'http://localhost:8080/category/update/4' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM' \
+--data '{
+    "name": "Fashion"
+}'
+```
+Kết quả:
+![updateCategoryByAdmin](https://github.com/user-attachments/assets/574cede9-3c3b-481f-998f-990c2223a7b8)
+
+### Delete category (**Only Admin**)
+```bash
+curl --location --request DELETE 'http://localhost:8080/category/delete/4' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM'
+```
+Kết quả:
+![deleteCategoryByAdmin](https://github.com/user-attachments/assets/cb436d1f-076a-4331-8a4f-bbf9f01bc141)
+
+##Order
+### Get all orders (**Only Admin**) 
+```bash
+curl --location 'http://localhost:8080/order/filter' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM'
+```
+Kết quả:
+![getAllOrderByAdmin](https://github.com/user-attachments/assets/c5146945-b4d0-4ba0-a029-b0c9c6396365)
+
+### Get order item by id
+```bash
+curl --location 'http://localhost:8080/order/filter?itemId=16' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM'
+```
+Kết quả:
+![getOrderItemByID](https://github.com/user-attachments/assets/9da1b5f2-5114-4527-9f39-ccafa943281a)
+
+### Get order item by status (**Only Admin**)
+```bash
+curl --location 'http://localhost:8080/order/filter?status=pending' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM'
+```
+Kết quả:
+![getOrderItemByStatus](https://github.com/user-attachments/assets/bf0db55e-a165-44a2-a2d5-84a61ce24ccc)
+
+
+
+
+
+
+
+
+
+
 
 
 
