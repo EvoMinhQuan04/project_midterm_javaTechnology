@@ -1,4 +1,4 @@
-# README FOR SPRING ECOMMERCE PROJECT - JAVA TECHNOLOGY
+![getAllUser](https://github.com/user-attachments/assets/fefe485f-0ee1-468f-9a8a-012eff36b10b)![register_api](https://github.com/user-attachments/assets/5602d675-9730-41d8-86ce-e3dc598d9595)# README FOR SPRING ECOMMERCE PROJECT - JAVA TECHNOLOGY
 
 Giới thiệu tổng quan về dự án
 -----------------------------------------------------------------
@@ -289,5 +289,123 @@ Trong dự án Spring Boot, thư mục resources nằm trong src/main/resources 
 
 5\. Entity Diagram
 ---------------------------
+
+### **Sơ đồ quan hệ ERD**
+
+![ERD_Java](https://github.com/user-attachments/assets/a349f4e1-86c6-4390-b09d-cc195617c430)
+
+### **Mô tả các bảng và quan hệ trong sơ đồ ERD**
+1.  **Bảng users**:
+    
+    *   Lưu trữ thông tin người dùng như tên, email, mật khẩu, số điện thoại, vai trò, và thời gian tạo tài khoản.      
+    *   id là khóa chính (PK).      
+    *   email là trường duy nhất.
+        
+2.  **Bảng addresses**:
+    
+    *   Lưu trữ địa chỉ của người dùng.     
+    *   user\_id là khóa ngoại (FK) tham chiếu đến bảng users.      
+    *   id là khóa chính (PK).
+        
+3.  **Bảng categories**:
+    
+    *   Lưu trữ các danh mục sản phẩm.        
+    *   id là khóa chính (PK).        
+    *   name là trường duy nhất.
+        
+4.  **Bảng products**:
+    
+    *   Lưu trữ thông tin sản phẩm như tên, mô tả, URL ảnh, giá và danh mục sản phẩm.       
+    *   category\_id là khóa ngoại (FK) tham chiếu đến bảng categories.       
+    *   id là khóa chính (PK).
+        
+5.  **Bảng orders**:
+    
+    *   Lưu trữ thông tin đơn hàng, bao gồm tổng giá trị đơn hàng và thời gian tạo đơn.       
+    *   id là khóa chính (PK).
+        
+6.  **Bảng order_items**:
+    
+    *   Lưu trữ các mục trong mỗi đơn hàng.     
+    *   user\_id là khóa ngoại (FK) tham chiếu đến bảng users.     
+    *   product\_id là khóa ngoại (FK) tham chiếu đến bảng products.     
+    *   order\_id là khóa ngoại (FK) tham chiếu đến bảng orders.     
+    *   id là khóa chính (PK).
+
+### **Các quan hệ giữa các bảng trong cơ sở dữ liệu:**
+
+* **Bảng users ↔ Bảng addresses**:   
+    *   Một người dùng có thể có nhiều địa chỉ (quan hệ 1-n).        
+    *   Mối quan hệ được thể hiện qua trường user\_id trong bảng addresses, tham chiếu đến id trong bảng users.
+        
+* **Bảng categories ↔ Bảng products**:   
+    *   Một danh mục có thể chứa nhiều sản phẩm (quan hệ 1-n).       
+    *   Mối quan hệ được thể hiện qua trường category\_id trong bảng products, tham chiếu đến id trong bảng categories.
+        
+* **Bảng users ↔ Bảng order_items**:  
+    *   Một người dùng có thể có nhiều mục trong đơn hàng (quan hệ 1-n).      
+    *   Mối quan hệ được thể hiện qua trường user\_id trong bảng order\_items, tham chiếu đến id trong bảng users.
+        
+* **Bảng products ↔ Bảng order_items**:    
+    *   Một sản phẩm có thể xuất hiện trong nhiều mục của đơn hàng (quan hệ 1-n).       
+    *   Mối quan hệ được thể hiện qua trường product\_id trong bảng order\_items, tham chiếu đến id trong bảng products.
+        
+* **Bảng orders ↔ Bảng order_items**:    
+    *   Một đơn hàng có thể có nhiều mục (quantities) (quan hệ 1-n).     
+    *   Mối quan hệ được thể hiện qua trường order\_id trong bảng order\_items, tham chiếu đến id trong bảng orders.
+
+6\. API Enpoints
+-------------------------------------
+
+## Auth
+### **Register** 
+```bash
+curl --location 'http://localhost:8080/auth/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "415quancao@gmail.com",
+    "name": "Cao Minh Quân",
+    "phoneNumber": "0353670210",
+    "password": "123456"
+}'
+```
+Kết quả:
+![register_api](https://github.com/user-attachments/assets/5583bdd6-0646-43ea-a7e7-93509041440a)
+
+### **Login**
+```bash
+curl --location 'http://localhost:8080/auth/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "admin@gmail.com",
+    "password": "12341234"
+}'
+```
+Kết quả:
+![login_api](https://github.com/user-attachments/assets/c7dab900-5a22-4510-b983-12dd4994e172)
+
+## User
+### Get all users (**Only Admin**)
+```bash
+curl --location 'http://localhost:8080/user/get-all' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM'
+```
+Kết quả:
+![getAllUser](https://github.com/user-attachments/assets/b33d2e39-99cf-49fc-a7cb-50bb5341ac79)
+
+### Get user details 
+```bash
+curl --location 'http://localhost:8080/user/my-info' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiI0MTVxdWFuY2FvQGdtYWlsLmNvbSIsImlhdCI6MTc0NjAxODk0NSwiZXhwIjoxNzYxNTcwOTQ1fQ.Y3Hjff9yn0Y2GYWHDtCHZLIOj5cJrLoWr8RfSQCTNeWEYbglrZW791FjOFgSmEYc'
+```
+Kết quả:
+![image](https://github.com/user-attachments/assets/4a69a68a-f1b4-4240-874e-d678b22f09e4)
+
+
+
+
+
+
+
 
 
