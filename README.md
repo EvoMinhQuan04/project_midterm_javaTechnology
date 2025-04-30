@@ -140,6 +140,44 @@ Việc áp dụng kiến trúc RESTful API trong dự án không chỉ giúp xâ
 
 3\. Công Nghệ Sử Dụng
 ------------------------------------------------
+Để xây dựng và triển khai hệ thống một cách hiệu quả, tôi đã lựa chọn tập hợp các công nghệ hiện đại, tối ưu cho phát triển web toàn diện từ front-end đến back-end, bao gồm ReactJS, Spring Boot, MySQL, AWS và Spring Security. Dưới đây là phân tích cụ thể cho từng công nghệ được ứng dụng trong dự án:
+
+### Front-end: ReactJS
+Ở phía giao diện người dùng, tôi sử dụng ReactJS – một thư viện JavaScript nổi bật chuyên dùng để phát triển các UI linh hoạt, phản ứng nhanh với tương tác của người dùng. React giúp tôi phát triển các giao diện theo hướng component, dễ dàng tái sử dụng và kiểm soát. Một số lý do khiến ReactJS trở thành lựa chọn lý tưởng:
+* **Hiệu ứng phản hồi theo thời gian thực**: Khi có sự thay đổi trong dữ liệu, React tự động cập nhật phần giao diện tương ứng nhờ cơ chế Virtual DOM, giúp trải nghiệm người dùng mượt mà, đặc biệt quan trọng trong các thao tác như xem giỏ hàng, cập nhật sản phẩm.
+* **Kiến trúc component tái sử dụng**:  Giao diện được chia nhỏ thành các component như Navbar, Footer, UserPanel, giúp tổ chức mã nguồn gọn gàng và mở rộng tính năng dễ dàng.
+* **Quản lý trạng thái ứng dụng**:  Tôi tích hợp Redux để quản lý trạng thái toàn cục, đảm bảo mọi component trong ứng dụng đều truy cập và cập nhật dữ liệu nhất quán.
+* **Kết nối API linh hoạt**:  React hoạt động hiệu quả khi tích hợp với RESTful API, hỗ trợ gửi và nhận dữ liệu JSON từ server thông qua các HTTP request (axios/fetch).
+
+### Back-end: Spring Boot
+Phía server được triển khai bằng Spring Boot, một nền tảng mạnh mẽ trong hệ sinh thái Java, giúp tăng tốc quá trình xây dựng các ứng dụng web có kiến trúc RESTful. Các lý do tôi chọn Spring Boot:
+* **Tự động hóa cấu hình**: Hệ thống auto-configuration giúp tiết kiệm thời gian thiết lập ban đầu, như kết nối database, cấu hình servlet, hoặc dependency injection.
+* **Hỗ trợ xây dựng REST API mạnh mẽ**: Với các annotation như @RestController, @RequestMapping, @PathVariable, tôi dễ dàng thiết lập các API phục vụ quản lý người dùng, sản phẩm, đơn hàng.
+* **Tích hợp tầng truy xuất dữ liệu**: Tôi sử dụng Spring Data JPA để giao tiếp với cơ sở dữ liệu thông qua các interface, giảm thiểu mã SQL thủ công, đồng thời đảm bảo khả năng mở rộng cho các thao tác tìm kiếm, lọc nâng cao.
+* **Khả năng mở rộng và tích hợp**:  Spring Boot hỗ trợ dễ dàng việc tích hợp với nhiều dịch vụ khác như email, thanh toán, xác thực OAuth2, Kafka, hoặc thậm chí gắn với microservices nếu mở rộng trong tương lai.
+
+### Cơ sở dữ liệu: MySQL
+Toàn bộ dữ liệu của hệ thống được lưu trữ bằng MySQL, một hệ quản trị cơ sở dữ liệu quan hệ phổ biến, đảm bảo tính ổn định, bảo mật và hiệu suất.
+* **Tương thích tốt với Spring Boot**: Thông qua JPA và Hibernate, các entity Java được ánh xạ trực tiếp với bảng dữ liệu, giúp tôi thao tác dữ liệu một cách tự nhiên, giảm viết lặp SQL.
+* **Tối ưu hiệu suất với index và truy vấn có điều kiện**: Cơ chế index hóa được áp dụng trên các cột truy vấn nhiều như email, product_id, giúp tăng tốc xử lý dữ liệu.
+* **Đáp ứng tốt cho hệ thống vừa và lớn**: MySQL đủ linh hoạt cho hệ thống quản lý đơn hàng, người dùng, sản phẩm có thể mở rộng về sau.
+
+### Cloud Storage & Hosting: AWS (Amazon Web Service)
+Để hỗ trợ lưu trữ và triển khai, tôi lựa chọn Amazon Web Services (AWS), nền tảng điện toán đám mây phổ biến và đáng tin cậy.
+* **AWS S3**: Dữ liệu tệp tĩnh như hình ảnh sản phẩm được lưu trữ trên Amazon S3, giúp tối ưu hiệu suất truy xuất ảnh, đồng thời giảm tải cho server ứng dụng. Tôi sử dụng các SDK AWS để upload ảnh trực tiếp từ client lên S3 qua API backend.
+* **AWS EC2 (dự kiến triển khai)**: Trong giai đoạn hoàn thiện, tôi có kế hoạch triển khai toàn bộ hệ thống lên EC2 – dịch vụ máy chủ ảo cho phép kiểm soát hoàn toàn môi trường chạy ứng dụng Spring Boot, cấu hình domain, bảo mật bằng HTTPS và giám sát hiệu suất.
+
+### Bảo mật: Spring Security + JWT
+Để đảm bảo an toàn cho toàn bộ hệ thống, tôi triển khai Spring Security kết hợp với JWT (JSON Web Token) như một giải pháp xác thực và phân quyền. Các tính năng bảo mật đã được tôi thực hiện:
+* **Xác thực người dùng**: Thông tin đăng nhập được kiểm tra dựa trên cơ sở dữ liệu người dùng, kết hợp mã hóa bằng BCryptPasswordEncoder để đảm bảo mật khẩu không bị lộ.
+* **Phân quyền truy cập (Authorization)**: Tôi định nghĩa các vai trò như ROLE_USER, ROLE_ADMIN, sau đó phân quyền ở từng API endpoint thông qua @PreAuthorize hoặc cấu hình HttpSecurity.
+* **Xác thực bằng JWT**: Sau khi người dùng đăng nhập thành công, server sẽ trả về một JWT chứa thông tin định danh. Token này được lưu ở phía client và gửi kèm trong mỗi request tiếp theo qua header Authorization, giúp API luôn stateless và dễ mở rộng.
+* **Bảo vệ API theo vai trò**: Các chức năng quan trọng như tạo/sửa/xóa sản phẩm được giới hạn chỉ dành cho admin, trong khi các thao tác mua hàng chỉ cần người dùng đã xác thực.
+* **Cấu hình bảo mật linh hoạt**: Toàn bộ luồng bảo mật được định nghĩa trong class SecurityConfig, sử dụng SecurityFilterChain, AuthenticationManager, cùng các custom filter xử lý JWT.
+
+4\. Cấu Trúc Dự Án
+
+
 
 
 
