@@ -98,6 +98,8 @@ Mỗi kiến trúc nêu trên đều có những điểm mạnh riêng và phù 
 RESTful API (Representational State Transfer) là một kiểu kiến trúc được tôi lựa chọn để phát triển các dịch vụ web trong dự án lần này. Kiến trúc RESTful giúp các ứng dụng giao tiếp với nhau một cách hiệu quả và rõ ràng thông qua giao thức HTTP. Để tương tác với các tài nguyên (resources), kiến trúc này sử dụng các phương thức HTTP chuẩn như GET, POST, PUT và DELETE.
 Các tài nguyên trong RESTful API được định danh bằng những đường dẫn (URL) cụ thể, chẳng hạn như /users để lấy danh sách người dùng hoặc /auth/login để đăng nhập. Việc định nghĩa rõ ràng các tài nguyên cùng với việc sử dụng những phương thức tiêu chuẩn giúp RESTful API trở nên rất dễ hiểu và dễ sử dụng.
 
+![markdown](https://velog.velcdn.com/images/0andwild/post/d5804ef2-ddad-4309-ba51-0e3d43389cac/image.png)
+
 ### **Cấu Trúc Và Các Nguyên Tắc của RESTful API**
 Trong quá trình xây dựng RESTful API cho dự án này, tôi luôn đảm bảo tuân thủ một số nguyên tắc cơ bản sau đây:
 1. **Tài Nguyên (Resources)**: Trong RESTful API, một tài nguyên có thể là bất kỳ thứ gì mà hệ thống quản lý, ví dụ như người dùng, sản phẩm, đơn hàng. Mỗi tài nguyên luôn được định danh bởi một đường dẫn URL rõ ràng, giúp tôi dễ dàng quản lý và truy cập tài nguyên đó một cách trực tiếp, ví dụ:
@@ -112,7 +114,33 @@ Trong quá trình xây dựng RESTful API cho dự án này, tôi luôn đảm b
 Điều này giúp cho việc thao tác với tài nguyên rõ ràng, đơn giản và phù hợp với các tiêu chuẩn chung trên toàn cầu.
 
 3. **Stateless (Phi trạng thái)**: Kiến trúc RESTful API yêu cầu mỗi request từ client luôn phải chứa đầy đủ thông tin để xử lý, server không cần nhớ trạng thái từ những request trước đó. Điều này giúp hệ thống trở nên linh hoạt, dễ mở rộng, giảm tải cho server, và rất thuận lợi khi triển khai hệ thống phân tán hoặc load-balancing.
-4. 
+4. **Cacheable (Khả năng lưu trữ cache)**: Nhờ khả năng lưu trữ dữ liệu trả về từ server vào bộ nhớ cache trên client, RESTful API giúp cải thiện đáng kể hiệu suất của hệ thống, giảm thời gian phản hồi và giảm tải cho server khi có nhiều lượt truy cập liên tục vào cùng một dữ liệu.
+5. **Uniform Interface (Giao diện thống nhất)**: RESTful API cung cấp một giao diện nhất quán và dễ dàng để tương tác, đảm bảo rằng mọi tài nguyên đều có cách thức truy cập và xử lý giống nhau, giúp lập trình viên giảm bớt sự nhầm lẫn và tối ưu hóa việc tích hợp API vào các ứng dụng khác nhau.
+6. **Resource Naming (Đặt tên tài nguyên chuẩn hóa)**: Sử dụng danh từ số nhiều cho tài nguyên, không nên lồng ghép quá nhiều cấp, tránh dùng động từ trong URL.
+7. **HATEOAS (Hypermedia As The Engine Of Application State)**: REST gốc đề xuất rằng client không chỉ nhận dữ liệu, mà còn nhận được các liên kết (hypermedia links) mô tả các thao tác có thể tiếp theo (self-descriptive messages). Điều này giúp client định hướng API giống như duyệt web.
+
+### **Cách Thức Hoạt Động của RESTful API trong dự án**
+Cụ thể, dự án của tôi được phát triển với front-end sử dụng ReactJS, trong khi back-end được xây dựng trên nền tảng Spring Boot. Hai phần này tương tác với nhau thông qua RESTful API, tạo ra một hệ thống tách biệt và linh hoạt:
+
+![markdown](https://th.bing.com/th/id/R.514782ffb73cb411660628bf3e9e9c1c?rik=u6OwZqm2uK1ynw&riu=http%3a%2f%2fwww.idevnews.com%2fviews%2fimages%2fuploads%2fgeneral%2fAPI_img_Akana_650.jpg&ehk=cqtVC7JoZVbBXMvVTNIuTi1nwtCW%2bYYwJsfwXjFRWs4%3d&risl=&pid=ImgRaw&r=0)
+
+1.  **Client**: (ReactJS) gửi yêu cầu tới server thông qua một API endpoint, ví dụ khi người dùng thực hiện hành động (ví dụ nhấn nút để xem thông tin sản phẩm), front-end sẽ gửi request HTTP (như GET /products) tới server.
+2.  **Server**: (Spring Boot) nhận yêu cầu, xử lý (chẳng hạn như truy vấn cơ sở dữ liệu) và trả về kết quả, server với Spring Boot sẽ tiếp nhận request, thực hiện xử lý nghiệp vụ (truy vấn dữ liệu, tính toán logic) và trả về dữ liệu dạng JSON.
+3.  **Client**: ReactJS nhận được dữ liệu này từ RESTful API và hiển thị lên giao diện một cách thân thiện và rõ ràng cho người dùng.
+
+### **Lợi ích khi sử dụng RESTful API trong dự án**
+Việc áp dụng kiến trúc RESTful API trong dự án không chỉ giúp xây dựng một hệ thống hiện đại, hiệu quả mà còn mang lại nhiều lợi ích rõ rệt trong quá trình phát triển, mở rộng và bảo trì ứng dụng. Dưới đây là những lợi ích quan trọng mà tôi đã nhận thấy trong suốt quá trình triển khai dự án sử dụng Spring Boot làm back-end và ReactJS làm front-end:
+
+1. **Tách biệt rõ ràng giữa giao diện người dùng và xử lý nghiệp vụ**: Một trong những ưu điểm lớn nhất khi sử dụng RESTful API là khả năng phân tách front-end và back-end một cách triệt để. Điều này có nghĩa là giao diện người dùng có thể được xây dựng, thay đổi, hoặc nâng cấp mà không làm ảnh hưởng tới logic xử lý phía server. Ngược lại, logic nghiệp vụ và quản lý dữ liệu có thể được tối ưu, cải tiến độc lập mà không cần sửa đổi giao diện. Mô hình này không chỉ thúc đẩy phát triển song song giữa các nhóm phát triển mà còn hỗ trợ linh hoạt khi thay đổi công nghệ ở một phía mà không ảnh hưởng đến toàn hệ thống.
+2. **Tăng khả năng mở rộng và thích ứng với nhu cầu tương lai**: RESTful API có kiến trúc đơn giản nhưng rất linh hoạt, điều này giúp hệ thống dễ dàng thích nghi với các thay đổi trong tương lai. Khi cần thêm tính năng mới hoặc mở rộng dịch vụ, chỉ cần định nghĩa thêm endpoint mới hoặc mở rộng logic xử lý mà không làm gián đoạn hoạt động của các phần hiện có. Với mô hình REST, tài nguyên được quản lý rõ ràng theo URL và thao tác bằng các phương thức HTTP tiêu chuẩn, nên việc bổ sung chức năng mới không gây ảnh hưởng đến các phần còn lại của ứng dụng.
+3. **Tương thích với đa nền tảng và hệ sinh thái hiện đại**: Một trong những lý do RESTful API trở nên phổ biến là vì nó hỗ trợ rất tốt việc giao tiếp giữa các hệ thống khác nhau. Dù client là ứng dụng web, mobile, desktop hay một hệ thống của bên thứ ba, miễn là có thể gửi HTTP request, đều có thể tương tác với REST API một cách dễ dàng. Điều này làm cho hệ thống có tính liên kết tốt với thế giới bên ngoài, dễ dàng tích hợp với các dịch vụ như thanh toán điện tử, dịch vụ email, hoặc các nền tảng cloud.
+4. **Hỗ trợ kiểm thử và phát triển theo hướng mô-đun**: RESTful API có đặc điểm là dễ kiểm thử, vì mỗi endpoint được thiết kế như một thực thể độc lập, có thể gửi request và nhận response một cách tách biệt. Các công cụ như Postman, Swagger, Insomnia... cho phép kiểm tra các API endpoint riêng rẽ, hỗ trợ quá trình phát triển theo hướng kiểm thử (TDD) hoặc tài liệu hoá API tự động. Tính độc lập giữa các thành phần cũng giúp chia nhỏ hệ thống thành các mô-đun dễ kiểm soát hơn, rất phù hợp với các dự án có quy mô vừa và lớn.
+5. **Nâng cao hiệu suất và khả năng tái sử dụng**: Khi hệ thống API được thiết kế tốt, các thành phần trong ứng dụng có thể sử dụng lại các endpoint để tránh việc viết lại logic xử lý tương tự. Chẳng hạn, một API lấy danh sách sản phẩm có thể được dùng ở cả trang chủ, trang danh mục, và trang tìm kiếm. Việc sử dụng cùng một endpoint cũng tạo ra sự thống nhất trong cách xử lý dữ liệu và giảm thiểu lỗi. Bên cạnh đó, nếu thiết kế thêm cơ chế cache hoặc phân trang (pagination), hệ thống có thể phục vụ hàng nghìn lượt truy cập mà vẫn giữ hiệu suất ổn định.
+6. **Đáp ứng tiêu chuẩn công nghiệp và dễ bảo trì**: RESTful API tuân theo những tiêu chuẩn được chấp nhận rộng rãi trong ngành phát triển phần mềm, giúp dễ dàng bảo trì và tiếp cận bởi các lập trình viên khác. Khi một lập trình viên mới tham gia vào dự án, họ có thể nhanh chóng hiểu cách hoạt động của hệ thống chỉ bằng cách đọc qua cấu trúc các endpoint và tham chiếu tài liệu API. Tính minh bạch và nhất quán này rất quan trọng đối với những dự án làm việc nhóm hoặc phát triển lâu dài.
+
+3\. Công Nghệ Sử Dụng
+------------------------------------------------
+
 
 
 
