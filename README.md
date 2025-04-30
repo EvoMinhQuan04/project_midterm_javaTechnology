@@ -1,4 +1,4 @@
-![getAllUser](https://github.com/user-attachments/assets/fefe485f-0ee1-468f-9a8a-012eff36b10b)![register_api](https://github.com/user-attachments/assets/5602d675-9730-41d8-86ce-e3dc598d9595)# README FOR SPRING ECOMMERCE PROJECT - JAVA TECHNOLOGY
+# README FOR SPRING ECOMMERCE PROJECT - JAVA TECHNOLOGY
 
 Giới thiệu tổng quan về dự án
 -----------------------------------------------------------------
@@ -382,6 +382,7 @@ curl --location 'http://localhost:8080/auth/login' \
 }'
 ```
 Kết quả:
+
 ![login_api](https://github.com/user-attachments/assets/c7dab900-5a22-4510-b983-12dd4994e172)
 
 ## User
@@ -391,6 +392,7 @@ curl --location 'http://localhost:8080/user/get-all' \
 --header 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3NDYwMTgxMjksImV4cCI6MTc2MTU3MDEyOX0.Pnhfbtu6lzuluvOOJtYXdrqo-HzxR4DW763o5hgXDStFsFWO_Zajo5mCnGuMcDGM'
 ```
 Kết quả:
+
 ![getAllUser](https://github.com/user-attachments/assets/b33d2e39-99cf-49fc-a7cb-50bb5341ac79)
 
 ### Get user details 
@@ -538,13 +540,6 @@ curl --location 'http://localhost:8080/order/filter?status=pending' \
 ```
 Kết quả:
 ![getOrderItemByStatus](https://github.com/user-attachments/assets/bf0db55e-a165-44a2-a2d5-84a61ce24ccc)
-
-
-
-
-
-
-
 
 
 
