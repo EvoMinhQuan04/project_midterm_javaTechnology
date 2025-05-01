@@ -735,7 +735,7 @@ admin.password=12341234
 2.  Sử dụng Maven để xây dựng và chạy ứng dụng.
     
 ```bash
-./mvnw clean install
+./mvnw clean install | mvn clean test (nếu muốn chạy test)
 ./mvnw spring-boot:run
 ```
 3.  Hoặc bạn có thể chạy ứng dụng từ IDE của mình (IntelliJ IDEA hoặc Eclipse).
