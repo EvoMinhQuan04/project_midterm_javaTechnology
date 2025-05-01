@@ -744,7 +744,7 @@ admin.password=12341234
 9\. Link Video Demo Dự án
 ---------------------------------------
 Ấn vào link bên dưới để xem được video demo các chức năng của sản phẩm.
-{@embed: https://youtu.be/65YVFSXuGNY}
+### https://youtu.be/65YVFSXuGNY
 
 
 
