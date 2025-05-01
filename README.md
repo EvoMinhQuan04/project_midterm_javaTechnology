@@ -708,7 +708,7 @@ git clone https://github.com/EvoMinhQuan04/project_midterm_javaTechnology.git
 CREATE DATABASE your_db;
 ```
 #### Bước 4: Cấu hình Application Properties
-Cấu hình kết nối cơ sở dữ liệu trong tệp application.properties hoặc application.yml nằm trong src/main/resources. Chỉnh sửa lại tên database và username, password của bạn và Xóa **123** ở cuối *aws.s3.accessKey* và *aws.s3.secretKey* để chạy được.
+Cấu hình kết nối cơ sở dữ liệu trong tệp application.properties hoặc application.yml nằm trong src/main/resources. Chỉnh sửa lại tên database và username, password của bạn và Xóa **123** ở cuối *aws.s3.accessKey* và *aws.s3.secretKey* để chạy được vì lý do bảo mật nên github đã chặn public key khi push lên github, vì thế phải xóa kí tự tôi đã thêm vào.
 
 ```bash
 spring.datasource.url=jdbc:mysql://localhost:3306/your_db
